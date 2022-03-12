@@ -11,13 +11,90 @@
 			integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 			crossorigin="anonymous"
 		/>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+		/>
 	</head>
 	<body>
 		<div class="container mt-3">
 			<form id="myForm">
-        <label for="peopleName">Nombre</label>
-        <input type="text" name="name" placeholder="Nombre" class="form-control">
+				<label for="peopleName">Nombre</label>
+				<input
+					type="text"
+					name="name"
+					placeholder="Nombre"
+					class="form-control"
+				/>
 				<h3 class="mt-3">Habilidades</h3>
+				<!-- Button trigger modal -->
+				<button
+					type="button"
+					class="btn btn-primary btn-sm"
+					data-bs-toggle="modal"
+					data-bs-target="#exampleModal"
+					id="btnAdd"
+				>
+					<i class="fa fa-plus"></i>
+				</button>
+
+				<!-- Modal -->
+				<div
+					class="modal fade"
+					id="exampleModal"
+					tabindex="-1"
+					aria-labelledby="exampleModalLabel"
+					aria-hidden="true"
+				>
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel">
+									Habilidad
+								</h5>
+								<button
+									type="button"
+									class="btn-close"
+									data-bs-dismiss="modal"
+									aria-label="Close"
+								></button>
+							</div>
+							<div class="modal-body">
+								<input
+									type="text"
+									placeholder="Nombre"
+									class="form-control mb-2"
+									id="name"
+									value="JavaScript"
+								/>
+								<input
+									type="date"
+									class="form-control mb-2"
+									id="dateFrom"
+									value="2022-02-01"
+								/>
+								<input
+									type="text"
+									placeholder="Descripción"
+									class="form-control mb-2"
+									id="description"
+									value="Lenguaje de Programación"
+								/>
+							</div>
+							<div class="modal-footer">
+								<button
+									type="button"
+									class="btn btn-secondary"
+									data-bs-dismiss="modal"
+								>
+									Cerrar
+								</button>
+								<!-- <button type="button" class="btn btn-primary" id="btnAddSkill" data-action="add">Guardar</button> -->
+								<button type="button" class="btn btn-primary" id="btnModalSave" data-action="add">Guardar</button>
+							</div>
+						</div>
+					</div>
+				</div>
 				<table class="table">
           <thead>
             <tr>
@@ -29,29 +106,18 @@
           </thead>
           <tbody id="skillList">
             <tr>
-              <td>
-                <input
-                  type="text"
-                  placeholder="Nombre"
-                  class="form-control"
-                  id="name"
-                  value="JavaScript"
-                />
-              </td>
-              <td><input type="date" class="form-control" id="dateFrom" value="2022-02-01" /></td>
-              <td>
-                <input
-                  type="text"
-                  placeholder="Descripción"
-                  class="form-control"
-                  id="description"
-                  value="Lenguaje de Programación"
-                />
-              </td>
-              <td>
-                <button type="button" class="btn btn-primary" id="btnAddSkill">Agregar</button>
-              </td>
-            </tr>
+							<td class="name">JavaScript</td>
+							<td class="dateFrom">2022-02-01</td>
+							<td class="description">Lenguaje de Programación</td>
+							<td>
+								<button class="btn btn-warning btn-sm editRow" type="button">
+									<i class="fa fa-pencil"></i>
+								</button>
+								<button class="btn btn-danger btn-sm deleteRow" type="button">
+									<i class="fa fa-trash"></i>
+								</button>
+							</td>
+						</tr>
           </tbody>
 				</table>
 
@@ -89,20 +155,31 @@
 			</form>
 		</div>
 
-    <template id="trTemplate">
-      <tr>
-        <td class="name"></td>
-        <td class="dateFrom"></td>
-        <td class="description"></td>
-        <td>
-          <button class="btn btn-warning editRow" type="button">Editar</button>
-        </td>
-      </tr>
-    </template>
-    
-    <template id="inputText">
-      <input type="text" value="" class="form-control">
-    </template>
+		<template id="trTemplate">
+			<tr>
+				<td class="name"></td>
+				<td class="dateFrom"></td>
+				<td class="description"></td>
+				<td>
+					<button class="btn btn-warning btn-sm editRow" type="button">
+						<i class="fa fa-pencil"></i>
+					</button>
+					<button class="btn btn-danger btn-sm deleteRow" type="button">
+						<i class="fa fa-trash"></i>
+					</button>
+				</td>
+			</tr>
+		</template>
+
+		<template id="inputText">
+			<input type="text" value="" class="form-control" />
+		</template>
+
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+			crossorigin="anonymous"
+		></script>
 		<script src="./app.js"></script>
 	</body>
 </html>
