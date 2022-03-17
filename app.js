@@ -153,4 +153,51 @@ document.addEventListener("DOMContentLoaded", () => {
   btnAdd.addEventListener("click", btnAddListener);
   btnModalSave.addEventListener("click", btnModalSaveListener);
   skillList.addEventListener("click", btnActionGroup);
+
+
+  // TABS
+  const changeTabsContents = (action) => {
+    // obtener elemento activo
+    let elemActiveKey;
+    let elemCurrent;
+    listTabs.forEach((element, key) => {
+      if (element.classList.contains("active")) {
+        elemActiveKey = key;
+      }
+    });
+    
+    // cambiar la información
+    listTabs[elemActiveKey].classList.remove("active");
+    listTabsContent[elemActiveKey].classList.remove("active", "show");
+    if (action === "next") {
+      elemCurrent = elemActiveKey + 1;
+      listTabs[elemCurrent].classList.add("active");
+      listTabsContent[elemCurrent].classList.add("active", "show");
+    } else if (action === "prev") {
+      elemCurrent = elemActiveKey - 1;
+      listTabs[elemCurrent].classList.add("active");
+      listTabsContent[elemCurrent].classList.add("active", "show");
+    }
+
+    // verificar si esta en el ultimo o primer elemento
+    if (elemCurrent <= 0) {
+      buttonPreviousTab.classList.add("disabled");
+    } else {
+      buttonPreviousTab.classList.remove("disabled");
+    }
+
+    if (elemCurrent >= (listTabs.length - 1)) {
+      buttonNextTab.classList.add("disabled");
+    } else {
+      buttonNextTab.classList.remove("disabled");
+    }
+  }
+
+  const buttonNextTab = document.getElementById("nextTab");
+  const buttonPreviousTab = document.getElementById("previousTab");
+  const listTabs = document.querySelectorAll("button[data-bs-toggle=tab]");
+  const listTabsContent = document.querySelectorAll("div.tab-content>div.tab-pane");
+  
+  buttonNextTab.addEventListener("click", () => changeTabsContents("next"));
+  buttonPreviousTab.addEventListener("click", () => changeTabsContents("prev"));
 });
